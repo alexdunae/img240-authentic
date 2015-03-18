@@ -9,6 +9,7 @@
 <body>
 <div class='container'>
 
+<%= link_to 'Sign out', sign_out_path, method: :delete %>
 <pre><%= current_user.inspect %></pre>
 
 <pre><%= flash.inspect %></pre>

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :lookup_user, only: [:edit, :update, :destroy]
+  before_action :ensure_admin, only: [:index, :destroy]
+  before_action :ensure_current_user, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -36,6 +38,14 @@ class UsersController < ApplicationController
 
   def lookup_user
     @user = User.find(params[:id])
+  end
+
+  def ensure_current_user
+    if current_user == @user
+      true
+    else
+      redirect_to root_path, error: 'Not allowed'
+    end
   end
 
   def redirect_after_success(notice = nil)
