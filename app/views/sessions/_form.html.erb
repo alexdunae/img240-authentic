@@ -1,0 +1,10 @@
+<%= form_tag(sessions_path, method: :create) do %>
+
+  email:
+  <%= email_field :session, :email %>
+
+  password:
+  <%= password_field :session, :password %>
+
+  <button type='submit'>Login</button>
+<% end %>
